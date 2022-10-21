@@ -1,7 +1,8 @@
 import process from 'process';
+import './env-config';
 
 async function main(): Promise<void> {
-  console.log('write your goodness here');
+  console.log('write your commandline goodness here');
 }
 
 main().catch((err) => {

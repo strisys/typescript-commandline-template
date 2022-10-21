@@ -8,6 +8,7 @@
     "**/.eslintrc.js": true,
     "**/.gitignore": true,
     "**/tsconfig.json": true,
-    "**/*.md": true
+    "**/*.md": true,
+    "**/*.env": true
   }
 }
