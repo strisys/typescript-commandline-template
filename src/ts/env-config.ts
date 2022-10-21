@@ -1,5 +1,5 @@
-import path from 'path';
 import { config } from 'dotenv';
+import path from 'path';
 
 export const configResult = config({
   path: path.resolve(module.path, '.env'),
