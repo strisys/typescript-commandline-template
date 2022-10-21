@@ -4,11 +4,13 @@
   "description": "The primary purpose of this project is simply to bootstrap the start of new projects that are typically command line in nature.",
   "main": "./src/js/index.js",
   "scripts": {
-    "postinstall": "npm-run-all start",
+    "postinstall": "npm-run-all test start",
     "clean-js": "rimraf ./src/js",
     "tsc": "tsc",
     "transpile": "npm-run-all clean-js tsc",
     "run": "node ./src/js/index.js",
+    "mocha": "mocha --exit --reporter tap ./src/js/test/**/*.spec.js",
+    "test": "npm-run-all transpile mocha",
     "start": "npm-run-all transpile run"
   },
   "keywords": [],
