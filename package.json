@@ -1,0 +1,33 @@
+{
+  "name": "typescript-commandline-bootstrap",
+  "version": "0.0.0-beta",
+  "description": "The primary purpose of this project is simply to bootstrap the start of new projects that are typically command line in nature.",
+  "main": "./src/js/index.js",
+  "scripts": {
+    "postinstall": "npm-run-all start",
+    "clean-js": "rimraf ./src/js",
+    "tsc": "tsc",
+    "transpile": "npm-run-all clean-js tsc",
+    "run": "node ./src/js/index.js",
+    "start": "npm-run-all transpile run"
+  },
+  "keywords": [],
+  "author": "typescript-bootstrap@stephentrudel.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.0",
+    "chai": "^4.3.6",
+    "cross-env": "^7.0.3",
+    "mocha": "^10.1.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.1.5",
+    "yargs": "^17.6.0"
+  }
+}
