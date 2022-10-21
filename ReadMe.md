@@ -1,4 +1,4 @@
-# TypeScript Command Bootstrap
+# TypeScript Command Line App Bootstrap
 
 ### Overview
 
