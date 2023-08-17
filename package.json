@@ -18,21 +18,21 @@
   "author": "typescript-bootstrap@stephentrudel.com",
   "license": "MIT",
   "devDependencies": {
-    "@types/chai": "^4.3.3",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^18.11.0",
-    "chai": "^4.3.6",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.1.0",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.8.4"
+    "@types/chai": "~4.3.5",
+    "@types/mocha": "~10.0.1",
+    "@types/node": "~20.5.0",
+    "chai": "~4.3.7",
+    "copyfiles": "~2.4.1",
+    "cross-env": "~7.0.3",
+    "dotenv": "~16.3.1",
+    "mocha": "~10.2.0",
+    "npm-run-all": "~4.1.5",
+    "rimraf": "~5.0.1",
+    "ts-node": "~10.9.1",
+    "typescript": "~5.1.6"
   },
   "dependencies": {
-    "copyfiles": "^2.4.1",
-    "cross-fetch": "^3.1.5",
-    "dotenv": "^16.0.3",
-    "yargs": "^17.6.0"
+    "cross-fetch": "~4.0.0",
+    "yargs": "~17.7.2"
   }
 }
