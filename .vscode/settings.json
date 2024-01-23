@@ -9,6 +9,6 @@
     "**/.gitignore": true,
     "**/tsconfig.json": true,
     "**/*.md": false,
-    "**/*.env": true
+    "**/*.env": false
   }
 }
