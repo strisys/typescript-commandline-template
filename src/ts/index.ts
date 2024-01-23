@@ -3,10 +3,37 @@ import './env-config';
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatOpenAI } from "@langchain/openai";
 import { StringOutputParser } from "@langchain/core/output_parsers";
+import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 async function main(): Promise<void> {
-  const response = (await processText('what is LangSmith?'));
-  console.log(response);
+  // const responseA = (await processText('what is LangSmith?'));
+  await processPage('https://docs.smith.langchain.com/overview');
+
+}
+
+// https://js.langchain.com/docs/get_started/quickstart#retrieval-chain
+const processPage = async (url: string): Promise<void> => {
+  const loader = new CheerioWebBaseLoader('https://docs.smith.langchain.com/overview');
+  const docs = (await loader.load());
+
+  console.log(docs.length);
+  console.log(docs[0].pageContent.length);
+
+  const splitter = new RecursiveCharacterTextSplitter();
+  const splitDocs = await splitter.splitDocuments(docs);
+
+  console.log(splitDocs.length);
+  console.log(splitDocs[0].pageContent.length);
+
+  const embeddings = new OpenAIEmbeddings();
+
+  const vectorstore = await MemoryVectorStore.fromDocuments(
+    splitDocs,
+    embeddings
+  );
 }
 
 const processText = async (text: string): Promise<string> => {
