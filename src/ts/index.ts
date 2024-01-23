@@ -7,6 +7,8 @@ import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
+import { createRetrievalChain } from "langchain/chains/retrieval";
 
 async function main(): Promise<void> {
   // const responseA = (await processText('what is LangSmith?'));
@@ -34,6 +36,35 @@ const processPage = async (url: string): Promise<void> => {
     splitDocs,
     embeddings
   );
+
+  const chatModel = new ChatOpenAI({
+    openAIApiKey: process.env.OPENAI_API_KEY
+  });
+
+  const prompt = ChatPromptTemplate.fromTemplate(`Answer the following question based only on the provided context:
+    <context>
+    {context}
+    </context>
+
+    Question: {input}`);
+
+  const documentChain = await createStuffDocumentsChain({
+    llm: chatModel,
+    prompt,
+  });
+
+  const retriever = vectorstore.asRetriever();
+
+  const retrievalChain = await createRetrievalChain({
+    combineDocsChain: documentChain,
+    retriever,
+  });
+
+  const result = await retrievalChain.invoke({
+    input: "what is LangSmith?",
+  });
+
+  console.log(result.answer);
 }
 
 const processText = async (text: string): Promise<string> => {
