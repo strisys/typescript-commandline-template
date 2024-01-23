@@ -1,5 +1,6 @@
-# TypeScript Command Line App Bootstrap
+# LangChain Trials
 
-### Overview
+### References 
 
-The purpose of this project is simply to bootstrap the start of new projects that are typically command line in nature.
+- [Tutorial](https://js.langchain.com/docs/get_started/quickstart)
+- [LangSmith](https://smith.langchain.com/o/714f0f6e-4bcf-5d68-bac9-a66b2a4643b2/)

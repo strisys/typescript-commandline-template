@@ -32,7 +32,9 @@
     "typescript": "~5.3.3"
   },
   "dependencies": {
+    "@langchain/openai": "^0.0.12",
     "cross-fetch": "~4.0.0",
+    "langchain": "^0.1.5",
     "yargs": "~17.7.2"
   }
 }
