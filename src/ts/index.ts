@@ -16,9 +16,14 @@ async function main(): Promise<void> {
 
 }
 
-// https://js.langchain.com/docs/get_started/quickstart#retrieval-chain
-const processPage = async (url: string): Promise<void> => {
-  const loader = new CheerioWebBaseLoader('https://docs.smith.langchain.com/overview');
+const getClient = (): ChatOpenAI => {
+  return new ChatOpenAI({
+    openAIApiKey: process.env.OPENAI_API_KEY
+  });
+}
+
+const fetchContentAndSplit = async (url: string): Promise<any> => {
+  const loader = new CheerioWebBaseLoader(url);
   const docs = (await loader.load());
 
   console.log(docs.length);
@@ -30,12 +35,24 @@ const processPage = async (url: string): Promise<void> => {
   console.log(splitDocs.length);
   console.log(splitDocs[0].pageContent.length);
 
+  return splitDocs;
+}
+
+const hydrateVectorStore = async (url: string): Promise<MemoryVectorStore> => {
+  const splitDocs = await fetchContentAndSplit(url);
   const embeddings = new OpenAIEmbeddings();
 
   const vectorstore = await MemoryVectorStore.fromDocuments(
     splitDocs,
     embeddings
   );
+
+  return vectorstore;
+}
+
+// https://js.langchain.com/docs/get_started/quickstart#retrieval-chain
+const processPage = async (url: string): Promise<void> => {
+  const vectorstore = await hydrateVectorStore(url);
 
   const chatModel = new ChatOpenAI({
     openAIApiKey: process.env.OPENAI_API_KEY
@@ -70,14 +87,11 @@ const processPage = async (url: string): Promise<void> => {
 const processText = async (text: string): Promise<string> => {
   const prompt = ChatPromptTemplate.fromMessages([
     ['system', 'You are a world class technical documentation writer.'],
-    ['user', '{input}'],
+    ['user', '{input}']
   ]);
 
-  const chatModel = new ChatOpenAI({
-    openAIApiKey: process.env.OPENAI_API_KEY
-  });
 
-  const chain = prompt.pipe(chatModel).pipe(new StringOutputParser());
+  const chain = prompt.pipe(getClient()).pipe(new StringOutputParser());
 
   const response = (await chain.invoke({
     input: text,
