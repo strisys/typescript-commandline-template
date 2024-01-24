@@ -14,7 +14,7 @@
 
 ### Summary
 
-Think of the things necessary to query a relational database.  You have the data itself structured in a relational form with SQL as the instruction and a client used to pass that instruction.   With large language models the data can come in many forms one of which is text and its best to give that structure in a vector database.  The prompt is effectively SQL submitted using a client.  What is slightly different about LLMs is that the prompt is both the question and the data whereas with a relational model the data is known to the execution engine so it does not have to be submitted per se.
+Think of the things necessary to query a relational database.  You have the data itself structured in a relational form with SQL as the instruction and a client used to pass that instruction.   With large language models the data can come in many forms one of which is text and its best to give that structure in a vector database.  The [prompt](https://js.langchain.com/docs/modules/model_io/prompts) is effectively SQL submitted using a [client]().  What is slightly different about LLMs is that the prompt is both the question and the data whereas with a relational model the data is known to the execution engine so it does not have to be submitted per se.
 
 There are plenty of differences but the parity with a relational model for asking questions about data is a good way to start as a means to assemble the parts and pieces used when working with LLMs.   Like a relational model where the primary skill is SQL, with LLMs the primary user skill is prompt engineering.
 
