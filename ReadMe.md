@@ -33,7 +33,7 @@ Lets start with the simplest example where we basically have a client along with
   console.log(response);
 ```
 
-We said that the main skill for using LLMs is in the creation of good prompts.  One aspect to doing this is giving the LLM its "role context" (e.g. "you are a savvy banker").  Many times using a template as the means for creating the prompt makes sense because often its a "fill in the blanks" exercise.  Below we use a template passing two name/value tuples.  The first sets the "role context" and the second is the place holder for text input. 
+We said that the main skill for using LLMs is in the creation of good prompts.  One aspect to doing this is giving the LLM its "role context" (e.g. "you are a savvy banker").  Many times using a template as the means for creating the prompt makes sense because often its a "fill in the blanks" exercise.  Below we use a template passing two name/value tuples.  The first sets the mentioned "role context" and the second is the place holder for text input. 
 
 ```
   import { ChatPromptTemplate } from "@langchain/core/prompts";
@@ -44,7 +44,7 @@ We said that the main skill for using LLMs is in the creation of good prompts.  
   ]);
 ```
 
-The next piece of code is where we see the first example of a [chain](https://js.langchain.com/docs/modules/chains/) in LangChain.  The abstraction represents a sequence of calls whether to an LLM, a tool, or a data preprocessing step.  Below we will pipe together the call to the LLM (ChatGPT) and the data processing abstraction for the response which in this case simple converts the response to a string.
+The next piece of code is where we see the first example of a [chain](https://js.langchain.com/docs/modules/chains/). The [chain](https://js.langchain.com/docs/modules/chains/) evidently is a core concept as its used in the name of the framework.  The abstraction represents a *sequence of calls* whether to an LLM, a tool, or a data processing step.  Below we will "pipe" together the call to the LLM (ChatGPT) by passing the client having the result then passed to a data processing abstraction which, in this case, converts the response object to a simple string.  Recall the pipe concept is often used in a hand-off model where the result of one operation in handed (piped) to the next.  
 
 ```
   const chain = prompt.pipe(getClient()).pipe(new StringOutputParser());
@@ -56,4 +56,4 @@ The next piece of code is where we see the first example of a [chain](https://js
   console.log(response);
 ```
 
-LangChain has the concept of chains which make more sense as the queries get more complex.
+
