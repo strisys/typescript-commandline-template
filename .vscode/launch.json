@@ -20,6 +20,15 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Node (JS)",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "${workspaceFolder}/src/js/index.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Mocha (JS)",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "args": [

@@ -1,8 +1,12 @@
 import { config } from 'dotenv';
-import path from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const configResult = config({
-  path: path.resolve(module.path, '.env'),
+  path: resolve(__dirname, '.env'),
   debug: true,
 });
 

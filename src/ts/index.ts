@@ -1,5 +1,5 @@
 import process from 'process';
-import './env-config';
+import './env-config.js';
 
 async function main(): Promise<void> {
   console.log('write your commandline goodness here');
