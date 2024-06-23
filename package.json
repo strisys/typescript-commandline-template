@@ -3,6 +3,10 @@
   "version": "0.0.0-beta-1",
   "description": "The primary purpose of this project is simply to bootstrap the start of new projects that are typically command line in nature.",
   "main": "./src/js/index.js",
+  "exports": {
+    ".": "./src/js/index.js"
+  },
+  "type": "module",
   "scripts": {
     "postinstall": "npm-run-all test start",
     "clean-js": "rimraf \"./src/js\"",
